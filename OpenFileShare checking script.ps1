@@ -7,7 +7,7 @@ $SMBEveryoneSharePath = (Get-SmbShare | Get-SmbShareAccess |Where-Object {$_.acc
 foreach ($FileShare in $SMBEveryoneSharePath){
 
     if(((Get-Acl $FileShare).access).IdentityReference -like "*everyone*" ){
-            return "OpenFileShareFound"
+            return "OpenFileShareFound=" + $FileShare
         }    
 }
 return 0
